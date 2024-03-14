@@ -39,5 +39,25 @@ public class DiaryDerosiroryTest{
         assertEquals(0,diaryImp.count());
     }
     @Test
-    public void test_addMultipleDiary_
+    public void test_addMultipleDiary_removeDiary(){
+        DiaryImp diaryImp = new DiaryImp();
+        Diary diary = new Diary("username");
+        for(int number = 0; number< 5; number++)
+            diaryImp.save(diary);
+        assertEquals(5,diaryImp.count());
+        diaryImp.delete(diary);
+        diaryImp.delete(diary);
+        diaryImp.delete(diary);
+        diaryImp.delete(diary);
+        assertEquals(1, diaryImp.count());
+    }
+    @Test
+    public void test_addDiary_findAllDiaries_assertLengthOFGottenDiaries(){
+        DiaryImp diaryImp = new DiaryImp();
+        Diary diary = new Diary("username");
+        for(int number = 0; number< 5; number++)
+            diaryImp.save(diary);
+        assertEquals(5,diaryImp.count());
+        assertEquals(5, diaryImp.findAll().size());
+    }
 }
