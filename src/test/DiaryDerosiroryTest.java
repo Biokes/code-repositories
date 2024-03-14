@@ -71,4 +71,14 @@ public class DiaryDerosiroryTest{
         diaryImp.deleteDiary("username");
         assertEquals(4,diaryImp.count());
     }
+    @Test
+    public void test_addMultipleDiary_removeDiary_countDiary(){
+        DiaryImp diaryImp=new DiaryImp( );
+        Diary diary=new Diary("username");
+        for( int number=0; number<5; number++ )
+            diaryImp.save(diary);
+        assertEquals(5, diaryImp.count( ));
+        diaryImp.delete(diary);
+        assertEquals(4, diaryImp.count( ));
+    }
 }

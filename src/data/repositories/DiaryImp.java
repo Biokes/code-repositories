@@ -43,9 +43,11 @@ public class DiaryImp implements DiaryRepository{
 
     @Override
     public void deleteDiary(String username){
-        for(Diary diary: diaries)
-            if(diary.getUsername().equals(username))
+        for(Diary diary: diaries){
+            if( diary.getUsername( ).equals(username) )
                 diaries.remove(diary);
+            break;
+        }
     }
 
 
