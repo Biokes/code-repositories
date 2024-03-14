@@ -61,5 +61,14 @@ public class DiaryDerosiroryTest{
         assertEquals(5, diaryImp.findAll().size());
     }
     @Test
-    public void
+    public void test_deleteDiaryByUserName(){
+        DiaryImp diaryImp = new DiaryImp();
+        Diary diary = new Diary("username");
+        for(int number = 0; number< 5; number++)
+            diaryImp.save(diary);
+        assertEquals(5,diaryImp.count());
+        assertEquals(5, diaryImp.findAll().size());
+        diaryImp.deleteDiary("username");
+        assertEquals(4,diaryImp.count());
+    }
 }
