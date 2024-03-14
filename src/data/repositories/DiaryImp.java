@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DiaryImp implements DiaryRepository{
-    private List<Diary> diaries = new ArrayList<>();
+    private final List<Diary> diaries = new ArrayList<>();
     public Diary save(Diary diary){
         diaries.add(diary);
         return diary;
