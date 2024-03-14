@@ -14,7 +14,7 @@ public class DiaryImp implements DiaryRepository{
 
     @Override
     public List<Diary> findAll(){
-        return null;
+        return this.diaries;
     }
 
     @Override

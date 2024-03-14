@@ -60,4 +60,6 @@ public class DiaryDerosiroryTest{
         assertEquals(5,diaryImp.count());
         assertEquals(5, diaryImp.findAll().size());
     }
+    @Test
+    public void
 }
