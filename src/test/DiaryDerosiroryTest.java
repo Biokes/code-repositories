@@ -23,11 +23,21 @@ public class DiaryDerosiroryTest{
         assertEquals(2,diaryImp.count());
     }
     @Test
-    public void findDiaryUserName_diaryIsGotten(){
+    public void findDiaryByUserName_diaryIsGotten(){
         DiaryImp diaryImp = new DiaryImp();
         Diary diary = new Diary("username");
         diary = diaryImp.save(diary);
         assertEquals(diary, diaryImp.findById("username"));
-
     }
+    @Test
+    public void test_AddTwoDiaries_removeOne(){
+        DiaryImp diaryImp = new DiaryImp();
+        Diary diary = new Diary("username");
+        diaryImp.save(diary);
+        assertEquals(1,diaryImp.count());
+        diaryImp.delete(diary);
+        assertEquals(0,diaryImp.count());
+    }
+    @Test
+    public void test_addMultipleDiary_
 }

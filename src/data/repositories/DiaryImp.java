@@ -19,16 +19,29 @@ public class DiaryImp implements DiaryRepository{
 
     @Override
     public Diary findById(String username){
+        for(Diary diary : diaries)
+            if(diary.getUsername().equals(username))
+                return diary;
         return null;
     }
 
     @Override
     public long count(){
+
         return diaries.size( );
     }
 
     @Override
     public void delete(Diary diary){
+        for(Diary diary1: diaries)
+            if(diary1 == diary){
+                diaries.remove(diary);
+                break;
+            }
+    }
+
+    @Override
+    public void deleteDiary(String username){
 
     }
 

@@ -5,4 +5,7 @@ public class Diary{
     public Diary(String username){
         this.username = username;
     }
+    public String getUsername(){
+        return this.username;
+    }
 }
