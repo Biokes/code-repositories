@@ -2,13 +2,14 @@ package data.repositories;
 
 import data.models.Diary;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DiaryImp implements DiaryRepository{
-
-    @Override
+    private List<Diary> diaries = new ArrayList<>();
     public Diary save(Diary diary){
-        return null;
+        diaries.add(diary);
+        return diary;
     }
 
     @Override
@@ -23,7 +24,7 @@ public class DiaryImp implements DiaryRepository{
 
     @Override
     public long count(){
-        return 0;
+        return diaries.size( );
     }
 
     @Override
