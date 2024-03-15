@@ -1,6 +1,8 @@
 package test.DiaryRepoTest;
 
+import data.models.Diary;
 import data.models.Entry;
+import data.repositories.DiaryImp;
 import data.repositories.EntryImplements;
 import data.repositories.EntryRepository;
 import org.junit.jupiter.api.Test;
@@ -46,5 +48,10 @@ public class EntryImplementsTest{
         assertEquals(0, entry.count());
     }
     @Test
-    void test
+    void test_saveDiary(){
+        Diary diary = new Diary("username");
+        for(int number = 0; number< 5; number++)
+            entry.save(diary);
+        assertEquals(5,entry.count());
+    }
 }

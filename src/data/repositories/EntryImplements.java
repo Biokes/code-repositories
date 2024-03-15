@@ -12,8 +12,6 @@ public class EntryImplements implements EntryRepository{
     public Diary save(Diary diary){
         return null;
     }
-
-    @Override
     public Entry save(Entry entry){
         entries.add(entry);
         return entry;
