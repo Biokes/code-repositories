@@ -21,4 +21,5 @@ public class EntryImplementsTest{
     entry.save(entry1);
     assertEquals(2, entry.count());
 }
+
 }
