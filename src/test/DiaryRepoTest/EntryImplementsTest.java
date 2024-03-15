@@ -67,5 +67,13 @@ public class EntryImplementsTest{
         Entry entryFound = entries.findById(1);
         assertEquals(entryFound,entry);
     }
-
+    @Test
+    void findEntryByIdDeleteEntry_deleteryEntryFound(){
+        Entry entry = new Entry(1);
+        entries.save(entry);
+        Entry entryFound = entries.findById(1);
+        assertEquals(entryFound,entry);
+        entries.delete(1);
+        assertEquals(0, entries.count());
+    }
 }
