@@ -1,6 +1,5 @@
 package data.repositories;
 
-import data.models.Diary;
 import data.models.Entry;
 
 import java.util.ArrayList;
@@ -8,13 +7,11 @@ import java.util.List;
 
 public class EntryImplements implements EntryRepository{
     private final List<Entry> entries = new ArrayList<>();
-    private final List<Diary> diaries = new ArrayList<>();
     public Entry save(Entry entry){
         entries.add(entry);
         return entry;
     }
 
-    @Override
     public List<Entry> findAll(){
         return null;
     }

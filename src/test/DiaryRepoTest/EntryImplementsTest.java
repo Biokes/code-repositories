@@ -1,8 +1,6 @@
 package test.DiaryRepoTest;
 
-import data.models.Diary;
 import data.models.Entry;
-import data.repositories.DiaryImp;
 import data.repositories.EntryImplements;
 import data.repositories.EntryRepository;
 import org.junit.jupiter.api.Test;
@@ -11,47 +9,54 @@ import org.junit.jupiter.api.BeforeEach;
 import static junit.framework.TestCase.assertEquals;
 
 public class EntryImplementsTest{
-    private EntryRepository entry = new EntryImplements();
+    private EntryRepository entries= new EntryImplements();
     @BeforeEach
     public void initialize(){
-        entry = new EntryImplements();
+        entries= new EntryImplements();
     }
 @Test
     public void testCreateEntrySaveEntry_EntryIsSaved(){
     Entry entry1 = new Entry();
-    entry.save(entry1);
-    entry.save(entry1);
-    assertEquals(2, entry.count());
+    entries.save(entry1);
+    entries.save(entry1);
+    assertEquals(2, entries.count());
 }
 @Test
     void createMulitipleEntriesThenDeleteEntry_testEntryIsDeleted(){
     Entry entry1 = new Entry();
-    entry.save(entry1);
-    entry.save(entry1);
-    assertEquals(2, entry.count());
-    entry.delete(entry1);
-    assertEquals(1, entry.count());
+    entries.save(entry1);
+    entries.save(entry1);
+    assertEquals(2, entries.count());
+    entries.delete(entry1);
+    assertEquals(1, entries.count());
 }
 @Test
     void test_AddEntryDeleteEntry_EntryIsAddedAndDeleted(){
         Entry entry1 = new Entry();
         Entry entry2 = new Entry();
-        entry.save(entry1);
-        entry.save(entry2);
-        entry.save(entry1);
-        entry.save(entry2);
-        entry.delete(entry1);
-        entry.delete(entry1);
-        entry.delete(entry2);
-        assertEquals(1,entry.count());
-        entry.delete(entry2);
-        assertEquals(0, entry.count());
+        entries.save(entry1);
+        entries.save(entry2);
+        entries.save(entry1);
+        entries.save(entry2);
+        entries.delete(entry1);
+        entries.delete(entry1);
+        entries.delete(entry2);
+        assertEquals(1, entries.count());
+        entries.delete(entry2);
+        assertEquals(0, entries.count());
     }
     @Test
-    void test_saveDiary_diaryIsSaved(){
-        Entry diary = new Entry();
+    void test_saveEntry_entryIsSaved(){
+        Entry entry1 = new Entry();
         for(int number = 0; number< 5; number++)
-            entry.save(diary);
-        assertEquals(5,entry.count());
+            entries.save(entry1);
+        assertEquals(5, entries.count());
+    }
+    @Test
+    void findEntryById_testEntryIsFound(){
+        Entry entry1 = new Entry();
+        entries.save(entry1);
+        assertEquals(1, entries.count());
+
     }
 }
