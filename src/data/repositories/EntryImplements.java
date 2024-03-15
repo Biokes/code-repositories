@@ -17,6 +17,10 @@ public class EntryImplements implements EntryRepository{
     }
 
     public Entry findById(int id){
+        for( Entry entry: entries){
+            if(entry.getId() == id)
+                return entry;
+        }
         return null;
     }
     public long count(){

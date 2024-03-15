@@ -16,14 +16,14 @@ public class EntryImplementsTest{
     }
 @Test
     public void testCreateEntrySaveEntry_EntryIsSaved(){
-    Entry entry1 = new Entry();
+    Entry entry1 = new Entry(2);
     entries.save(entry1);
     entries.save(entry1);
     assertEquals(2, entries.count());
 }
 @Test
     void createMulitipleEntriesThenDeleteEntry_testEntryIsDeleted(){
-    Entry entry1 = new Entry();
+    Entry entry1 = new Entry(1);
     entries.save(entry1);
     entries.save(entry1);
     assertEquals(2, entries.count());
@@ -32,8 +32,8 @@ public class EntryImplementsTest{
 }
 @Test
     void test_AddEntryDeleteEntry_EntryIsAddedAndDeleted(){
-        Entry entry1 = new Entry();
-        Entry entry2 = new Entry();
+        Entry entry1 = new Entry(2);
+        Entry entry2 = new Entry(1);
         entries.save(entry1);
         entries.save(entry2);
         entries.save(entry1);
@@ -47,16 +47,25 @@ public class EntryImplementsTest{
     }
     @Test
     void test_saveEntry_entryIsSaved(){
-        Entry entry1 = new Entry();
+        Entry entry1 = new Entry(3);
         for(int number = 0; number< 5; number++)
             entries.save(entry1);
         assertEquals(5, entries.count());
     }
     @Test
     void findEntryById_testEntryIsFound(){
-        Entry entry1 = new Entry();
+        Entry entry1 = new Entry(12);
         entries.save(entry1);
         assertEquals(1, entries.count());
+        assertEquals(entry1, entries.findById(12));
 
     }
+    @Test
+    void deleteEntryByID_entryIsDeleted(){
+        Entry entry = new Entry(1);
+        entries.save(entry);
+        Entry entryFound = entries.findById(1);
+        assertEquals(entryFound,entry);
+    }
+
 }
