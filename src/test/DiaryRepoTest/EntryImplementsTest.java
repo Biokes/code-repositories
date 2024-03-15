@@ -81,8 +81,7 @@ public class EntryImplementsTest{
     void test_findAll_AllEntryIsGotten(){
         Entry entry = new Entry(1);
         entries.save(entry);
-        assertTrue(entries.count()==0);
-        assertEquals(entries, entries.findAll());
+        assertTrue(entries.count()==1);
+        assertEquals(1, entries.findAll().size());
     }
-
 }

@@ -11,9 +11,8 @@ public class EntryImplements implements EntryRepository{
         entries.add(entry);
         return entry;
     }
-
     public List<Entry> findAll(){
-        return null;
+        return entries;
     }
 
     public Entry findById(int id){
