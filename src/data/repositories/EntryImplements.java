@@ -28,7 +28,7 @@ public class EntryImplements implements EntryRepository{
         return entries.size();
     }
     public void delete(int id){
-
+        entries.remove(findById(id));
     }
     public void delete(Entry entryGiven){
         for(Entry entry : entries)

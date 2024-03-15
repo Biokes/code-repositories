@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 public class EntryImplementsTest{
     private EntryRepository entries= new EntryImplements();
@@ -76,4 +77,12 @@ public class EntryImplementsTest{
         entries.delete(1);
         assertEquals(0, entries.count());
     }
+    @Test
+    void test_findAll_AllEntryIsGotten(){
+        Entry entry = new Entry(1);
+        entries.save(entry);
+        assertTrue(entries.count()==0);
+        assertEquals(entries, entries.findAll());
+    }
+
 }
