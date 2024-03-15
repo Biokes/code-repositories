@@ -34,9 +34,11 @@ public class EntryImplements implements EntryRepository{
     public void delete(int id){
 
     }
-
-    @Override
-    public void delete(Entry entry){
-
+    public void delete(Entry entryGiven){
+        for(Entry entry : entries)
+            if(entry == entryGiven){
+                entries.remove(entryGiven);
+                break;
+            }
     }
 }
