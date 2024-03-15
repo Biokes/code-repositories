@@ -8,10 +8,7 @@ import java.util.List;
 
 public class EntryImplements implements EntryRepository{
     private final List<Entry> entries = new ArrayList<>();
-    @Override
-    public Diary save(Diary diary){
-        return null;
-    }
+    private final List<Diary> diaries = new ArrayList<>();
     public Entry save(Entry entry){
         entries.add(entry);
         return entry;

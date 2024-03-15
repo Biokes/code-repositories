@@ -48,8 +48,8 @@ public class EntryImplementsTest{
         assertEquals(0, entry.count());
     }
     @Test
-    void test_saveDiary(){
-        Diary diary = new Diary("username");
+    void test_saveDiary_diaryIsSaved(){
+        Entry diary = new Entry();
         for(int number = 0; number< 5; number++)
             entry.save(diary);
         assertEquals(5,entry.count());
