@@ -12,13 +12,11 @@ public class DiaryImp implements DiaryRepository{
         return diary;
     }
 
-    @Override
     public List<Diary> findAll(){
 
         return this.diaries;
     }
 
-    @Override
     public Diary findById(String username){
         for(Diary diary : diaries)
             if(diary.getUsername().equals(username))
@@ -26,13 +24,11 @@ public class DiaryImp implements DiaryRepository{
         return null;
     }
 
-    @Override
     public long count(){
 
         return diaries.size( );
     }
 
-    @Override
     public void delete(Diary diary){
         for(Diary diary1: diaries)
             if(diary1 == diary){
@@ -41,7 +37,6 @@ public class DiaryImp implements DiaryRepository{
             }
     }
 
-    @Override
     public void deleteDiary(String username){
         for(Diary diary: diaries){
             if( diary.getUsername( ).equals(username) )
