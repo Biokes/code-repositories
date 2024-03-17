@@ -1,4 +1,4 @@
-package test.DiaryRepoTest;
+package DiaryRepoTest;
 
 import data.models.Diary;
 import data.repositories.DiaryImp;

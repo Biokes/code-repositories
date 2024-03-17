@@ -8,4 +8,10 @@ public class Diary{
     public String getUsername(){
         return this.username;
     }
+
+    public String toString(){
+        return String.format("""
+                %s
+                """, getUsername());
+    }
 }
