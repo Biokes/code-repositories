@@ -9,7 +9,7 @@ public class DiaryAppService implements DiaryServices{
     private DiaryRepository diaryRepository = new DiaryImp();
     @Override
     public Diary createDiary(DiaryLoginRequest loginRequest){
-        Diary diary = new Diary(loginRequest.getUserName( ));
+        Diary diary = new Diary();
         Diary savedDiary =  diaryRepository.save(diary);
         return savedDiary;
     }
