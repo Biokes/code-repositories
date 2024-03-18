@@ -9,9 +9,7 @@ public class Diary{
         return this.username;
     }
 
-    public String toString(){
-        return String.format("""
-                %s
-                """, getUsername());
+    public int getNumberOfEntries(){
+        return 1;
     }
 }

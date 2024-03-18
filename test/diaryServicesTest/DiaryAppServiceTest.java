@@ -14,7 +14,7 @@ class DiaryAppServiceTest{
     DiaryAppService diaryAppService;
 
     @BeforeEach
-            private void setUp(){
+    private void initiallize(){
         diaryRepository = new DiaryImp();
         diaryAppService = new DiaryAppService(diaryRepository);
     }
@@ -22,14 +22,7 @@ class DiaryAppServiceTest{
     @Test
     public void createDiary(){
         Diary diary = diaryAppService.createDiary("Biokes diary", "biokes");
-        System.out.println(diary );
-        assertNotNull(diary);
-    }
-    @Test
-    public void countDiarySize(){
-        Diary diary = diaryAppService.createDiary("Biokes diary", "biokes");
-        long size =diaryAppService.getDiariesSize( );
-        assertEquals(1, size);
+        assertEquals(0, diary.getNumberOfEntries());
     }
 
 
