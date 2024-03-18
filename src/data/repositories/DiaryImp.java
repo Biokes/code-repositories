@@ -30,19 +30,11 @@ public class DiaryImp implements DiaryRepository{
     }
 
     public void delete(Diary diary){
-        for(Diary diary1: diaries)
-            if(diary1 == diary){
-                diaries.remove(diary);
-                break;
-            }
+        diaries.removeIf(diary1-> diary1 == diary);
     }
 
     public void deleteDiary(String username){
-        for(Diary diary: diaries){
-            if( diary.getUsername( ).equals(username) )
-                diaries.remove(diary);
-            break;
-        }
+        diaries.removeIf(currentDiary-> currentDiary.getUsername().equalsIgnoreCase(username));
     }
 
 

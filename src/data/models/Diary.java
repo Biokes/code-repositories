@@ -1,6 +1,6 @@
 package data.models;
 
-public class Diary{
+public class Diary{private Diary
     private final String username;
     public Diary(String username){
         this.username = username;
@@ -9,7 +9,7 @@ public class Diary{
         return this.username;
     }
 
-    public int getNumberOfEntries(){
+    public int numberOfEntries(){
         return 1;
     }
 }

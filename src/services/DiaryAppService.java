@@ -1,21 +1,19 @@
 package services;
 
 import data.models.Diary;
+import data.repositories.DiaryImp;
 import data.repositories.DiaryRepository;
+import dtos.DiaryLoginRequest;
 
 public class DiaryAppService implements DiaryServices{
-    private final DiaryRepository diaryRepository;
-    public DiaryAppService(DiaryRepository diaryRepository){
-        this.diaryRepository = diaryRepository;
-    }
+    private DiaryRepository diaryRepository = new DiaryImp();
     @Override
-    public Diary createDiary(String userName, String password){
-        Diary diary = new Diary(userName);
+    public Diary createDiary(DiaryLoginRequest loginRequest){
+        Diary diary = new Diary(loginRequest.getUserName( ));
         Diary savedDiary =  diaryRepository.save(diary);
         return savedDiary;
     }
-
-    @Override
+        @Override
     public void deleteDiary(String userName){
 
     }
