@@ -83,4 +83,5 @@ public class DiaryAppServiceTest{
         loginRequest.setPassword("pass word");
         Assertions.assertThrows(InvalidDetailsException.class,()->service.login(loginRequest));
     }
+
 }

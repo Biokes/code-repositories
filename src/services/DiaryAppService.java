@@ -8,16 +8,25 @@ import dtos.EntryRequest;
 import exceptions.DiaryNotFoundException;
 import exceptions.InvalidDetailsException;
 import exceptions.UserAlreadyExistException;
-
 public class DiaryAppService implements DiaryServices{
     private final DiaryRepository diaryRepository = new DiaryImp();
+    public Diary findDiary(String username){
+        if(isDiaryExisting(username))
+            return diaryRepository.findDiary(username);
+        throw new DiaryNotFoundException();
+    }
+    public boolean isDiaryExisting(String username){
+        for(Diary diary1 : diaryRepository.findAll())
+            if(diary1.getUsername().equalsIgnoreCase(username))
+                return true;
+        return false;
+    }
     private void validateRequest(CreateDiaryRequest loginRequest){
         if(loginRequest.getUserName().trim().isEmpty())
             throw new InvalidDetailsException();
         if(loginRequest.getPassword().trim().isEmpty())
             throw new InvalidDetailsException();
     }
-    @Override
     public Diary register(CreateDiaryRequest loginRequest){
         validateRequest(loginRequest);
         Diary diary = new Diary();
@@ -27,7 +36,7 @@ public class DiaryAppService implements DiaryServices{
         return diaryRepository.save(diary);
     }
     private void validate(Diary diary){
-        if(diaryRepository.findDiary(diary.getUsername())!= null )
+        if(isDiaryExisting(diary.getUsername( )))
             throw new UserAlreadyExistException();
     }
     public void deleteDiary(String userName){
@@ -37,48 +46,26 @@ public class DiaryAppService implements DiaryServices{
         }
         throw new DiaryNotFoundException();
     }
-    @Override
     public long count(){
         return diaryRepository.count();
     }
-    @Override
+    public void login(DiaryLoginRequest loginRequest){
+      if(loginRequest.getPassword().equals(diaryRepository.findDiary(loginRequest.getUserName( )).getPassword())){
+          diaryRepository.findDiary(loginRequest.getUserName( )).setLock(true);
+        return;
+      }
+      throw new InvalidDetailsException();
+    }
     public void addEntry(EntryRequest entryRequest){
 
     }
-
-    @Override
     public void lockDiary(){
 
     }
-
-    @Override
-    public void login(DiaryLoginRequest loginRequest){
-      Diary diary =  diaryRepository.findDiary(loginRequest.getUserName( ));
-      diary.setLock(true);
-    }
-
-    @Override
     public void logOut(){
 
     }
-
-    @Override
     public void delete(Diary diary){
 
     }
-
-    @Override
-    public Diary findDiary(String username){
-        return null;
-    }
-
-    @Override
-    public boolean isDiaryExisting(String username){
-        for(Diary diary1 : diaryRepository.findAll())
-            if(diary1.getUsername().equalsIgnoreCase(username))
-                return true;
-        return false;
-    }
-
-
 }

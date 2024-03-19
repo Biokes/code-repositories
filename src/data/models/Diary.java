@@ -39,4 +39,8 @@ public class Diary{
     public void setLock(boolean condition){
         isLocked = condition;
     }
+
+    public String getPassword(){
+        return password;
+    }
 }
