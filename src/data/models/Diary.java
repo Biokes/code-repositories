@@ -2,6 +2,7 @@ package data.models;
 
 
 import dtos.DiaryLoginRequest;
+import exceptions.InvalidDetailsException;
 
 public class Diary{
     public String getUsername(){
@@ -16,9 +17,20 @@ public class Diary{
     public boolean isLocked(){
         return isLocked;
     }
+    private void verifyPassword(DiaryLoginRequest request){
+        if(password.equals(request.getPassword())){
+            isLocked=true;
+        }else throw new InvalidDetailsException();
+    }
     public void login(DiaryLoginRequest request){
-        if( password.equals(request.getPassword()))
-            isLocked = true;
+        validateRequest(request);
+        verifyPassword(request);
+    }
+    private void validateRequest(DiaryLoginRequest loginRequest){
+        if(loginRequest.getUserName().trim().isEmpty())
+            throw new InvalidDetailsException();
+        if(loginRequest.getPassword().trim().isEmpty())
+            throw new InvalidDetailsException();
     }
     public boolean isLoggedIn(){
         return isLocked;

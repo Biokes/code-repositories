@@ -17,12 +17,6 @@ public class DiaryAppService implements DiaryServices{
         if(loginRequest.getPassword().trim().isEmpty())
             throw new InvalidDetailsException();
     }
-    private void validateRequest(DiaryLoginRequest loginRequest){
-        if(loginRequest.getUserName().trim().isEmpty())
-            throw new InvalidDetailsException();
-        if(loginRequest.getPassword().trim().isEmpty())
-            throw new InvalidDetailsException();
-    }
     @Override
     public Diary register(CreateDiaryRequest loginRequest){
         validateRequest(loginRequest);

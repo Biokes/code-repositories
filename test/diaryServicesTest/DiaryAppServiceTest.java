@@ -69,7 +69,18 @@ public class DiaryAppServiceTest{
         DiaryLoginRequest loginRequest = new DiaryLoginRequest();
         loginRequest.setUsername("user name");
         loginRequest.setPassword("password");
-        service.login(loginRequest);
+        diary.login(loginRequest);
         Assertions.assertTrue(diary.isLoggedIn());
+    }
+    @Test
+    void incorrectLoginDetails_throwsException(){
+        CreateDiaryRequest request = new CreateDiaryRequest();
+        request.setUsername("user name");
+        request.setPassword("password");
+        Diary diary = service.register(request);
+        DiaryLoginRequest loginRequest = new DiaryLoginRequest();
+        loginRequest.setUsername("user name");
+        loginRequest.setPassword("pass word");
+        Assertions.assertThrows(InvalidDetailsException.class,()->diary.login(loginRequest));
     }
 }
