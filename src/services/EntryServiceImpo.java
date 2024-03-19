@@ -3,7 +3,7 @@ package services;
 import data.models.Entry;
 import dtos.EntryRequest;
 
-public class EntryServiceImpo extends EntryService{
+public class EntryServiceImpo implements EntryService{
     @Override
     public Entry createEntry(EntryRequest request){
         return null;
