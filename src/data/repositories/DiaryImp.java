@@ -21,5 +21,11 @@ public class DiaryImp implements DiaryRepository{
         diaries.removeIf(currentDiary-> currentDiary.getUsername().equalsIgnoreCase(username));
     }
 
-
+    @Override
+    public boolean findDiary(String username){
+        for(Diary diary1 : diaries)
+            if(diary1.getUsername().equalsIgnoreCase(username))
+                return true;
+        return false;
+    }
 }

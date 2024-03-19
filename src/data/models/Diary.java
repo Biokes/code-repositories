@@ -11,7 +11,7 @@ public class Diary{
     private boolean isLocked;
 
     public void setUsername(String username){
-        this.username=username;
+        this.username =username;
     }
 
     public String getPassword(){
@@ -26,7 +26,5 @@ public class Diary{
         return isLocked;
     }
 
-    public void setLocked(boolean locked){
-        isLocked=locked;
-    }
+
 }

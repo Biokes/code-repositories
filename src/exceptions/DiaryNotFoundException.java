@@ -1,4 +1,4 @@
-package services;
+package exceptions;
 
 public class DiaryNotFoundException extends RuntimeException{
     public DiaryNotFoundException(){
