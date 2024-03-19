@@ -69,7 +69,7 @@ public class DiaryAppServiceTest{
         DiaryLoginRequest loginRequest = new DiaryLoginRequest();
         loginRequest.setUsername("user name");
         loginRequest.setPassword("password");
-        diary.login(loginRequest);
+        service.login(loginRequest);
         Assertions.assertTrue(diary.isLoggedIn());
     }
     @Test
@@ -81,6 +81,6 @@ public class DiaryAppServiceTest{
         DiaryLoginRequest loginRequest = new DiaryLoginRequest();
         loginRequest.setUsername("user name");
         loginRequest.setPassword("pass word");
-        Assertions.assertThrows(InvalidDetailsException.class,()->diary.login(loginRequest));
+        Assertions.assertThrows(InvalidDetailsException.class,()->service.login(loginRequest));
     }
 }

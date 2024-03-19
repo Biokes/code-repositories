@@ -27,12 +27,11 @@ public class DiaryAppService implements DiaryServices{
         return diaryRepository.save(diary);
     }
     private void validate(Diary diary){
-        if( diaryRepository.findDiary(diary.getUsername()))
+        if(diaryRepository.findDiary(diary.getUsername())!= null )
             throw new UserAlreadyExistException();
     }
-
     public void deleteDiary(String userName){
-        if(diaryRepository.findDiary(userName)){
+        if(isDiaryExisting(userName)){
             diaryRepository.deleteDiary(userName);
             return;
         }
@@ -48,6 +47,17 @@ public class DiaryAppService implements DiaryServices{
     }
 
     @Override
+    public void lockDiary(){
+
+    }
+
+    @Override
+    public void login(DiaryLoginRequest loginRequest){
+      Diary diary =  diaryRepository.findDiary(loginRequest.getUserName( ));
+      diary.setLock(true);
+    }
+
+    @Override
     public void logOut(){
 
     }
@@ -58,7 +68,17 @@ public class DiaryAppService implements DiaryServices{
     }
 
     @Override
-    public boolean findDiary(String username){
+    public Diary findDiary(String username){
+        return null;
+    }
+
+    @Override
+    public boolean isDiaryExisting(String username){
+        for(Diary diary1 : diaryRepository.findAll())
+            if(diary1.getUsername().equalsIgnoreCase(username))
+                return true;
         return false;
     }
+
+
 }

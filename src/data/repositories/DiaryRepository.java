@@ -8,6 +8,6 @@ List<Diary> findAll();
 long count();
 void delete(Diary diary);
 void deleteDiary(String username);
-boolean findDiary(String username);
+Diary findDiary(String username);
 
 }

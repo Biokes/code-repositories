@@ -10,8 +10,12 @@ public interface DiaryServices{
     void deleteDiary(String userName);
     long count();
     void addEntry(EntryRequest entryRequest);
+    void lockDiary();
+    void login(DiaryLoginRequest loginRequest);
+
     void logOut();
     void delete(Diary diary);
-    boolean findDiary(String username);
+    Diary findDiary(String username);
+    boolean isDiaryExisting(String username);
 }
 

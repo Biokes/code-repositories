@@ -14,28 +14,29 @@ public class Diary{
     public void setPassword(String password){
         this.password=password;
     }
-    public boolean isLocked(){
-        return isLocked;
-    }
     private void verifyPassword(DiaryLoginRequest request){
         if(password.equals(request.getPassword())){
             isLocked=true;
         }else throw new InvalidDetailsException();
     }
-    public void login(DiaryLoginRequest request){
-        validateRequest(request);
-        verifyPassword(request);
-    }
-    private void validateRequest(DiaryLoginRequest loginRequest){
-        if(loginRequest.getUserName().trim().isEmpty())
-            throw new InvalidDetailsException();
-        if(loginRequest.getPassword().trim().isEmpty())
-            throw new InvalidDetailsException();
-    }
+//    public void login(DiaryLoginRequest request){
+//        validateRequest(request);
+//        verifyPassword(request);
+//    }
+//    private void validateRequest(DiaryLoginRequest loginRequest){
+//        if(loginRequest.getUserName().trim().isEmpty())
+//            throw new InvalidDetailsException();
+//        if(loginRequest.getPassword().trim().isEmpty())
+//            throw new InvalidDetailsException();
+//    }
     public boolean isLoggedIn(){
         return isLocked;
     }
     private String username;
     private String password;
     private boolean isLocked;
+
+    public void setLock(boolean condition){
+        isLocked = condition;
+    }
 }

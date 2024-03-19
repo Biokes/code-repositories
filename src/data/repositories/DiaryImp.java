@@ -22,10 +22,10 @@ public class DiaryImp implements DiaryRepository{
     }
 
     @Override
-    public boolean findDiary(String username){
+    public Diary findDiary(String username){
         for(Diary diary1 : diaries)
             if(diary1.getUsername().equalsIgnoreCase(username))
-                return true;
-        return false;
+                return diary1;
+        return null;
     }
 }
