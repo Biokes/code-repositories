@@ -11,12 +11,6 @@ public class DiaryImp implements DiaryRepository{
     public List<Diary> findAll(){
         return this.diaries;
     }
-    public Diary findById(String username){
-        for(Diary diary : diaries)
-            if(diary.getUsername().equals(username))
-                return diary;
-        return null;
-    }
     public long count(){
         return diaries.size( );
     }

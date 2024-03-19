@@ -11,14 +11,12 @@ public class DiaryAppService implements DiaryServices{
     @Override
     public Diary createDiary(CreateDiaryRequest loginRequest){
         Diary diary = new Diary();
-        Diary savedDiary =  diaryRepository.save(diary);
-        return savedDiary;
+        return diaryRepository.save(diary);
     }
     @Override
     public void deleteDiary(String userName){
-
+        diaryRepository.deleteDiary(userName);
     }
-
     @Override
     public long count(){
         return diaryRepository.count();
