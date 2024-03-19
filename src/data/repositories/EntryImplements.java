@@ -1,10 +1,8 @@
 package data.repositories;
-
 import data.models.Entry;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class EntryImplements implements EntryRepository{
     private final List<Entry> entries = new ArrayList<>();
     public Entry save(Entry entry){
@@ -14,7 +12,6 @@ public class EntryImplements implements EntryRepository{
     public List<Entry> findAll(){
         return entries;
     }
-
     public Entry findById(int id){
         for( Entry entry: entries){
             if(entry.getId() == id)
