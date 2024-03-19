@@ -1,11 +1,12 @@
 package services;
 
 import data.models.Diary;
+import dtos.CreateDiaryRequest;
 import dtos.DiaryLoginRequest;
 
 public interface DiaryServices{
-    Diary createDiary(DiaryLoginRequest loginRequest);
+    Diary createDiary(CreateDiaryRequest loginRequest);
     void deleteDiary(String userName);
-    long getDiariesSize();
+    long count();
 
 }
