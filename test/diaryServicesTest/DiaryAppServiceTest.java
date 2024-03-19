@@ -10,7 +10,6 @@ import services.DiaryAppService;
 import exceptions.DiaryNotFoundException;
 
 import static org.junit.Assert.assertThrows;
-
 public class DiaryAppServiceTest{
     private DiaryAppService service;
     @BeforeEach
@@ -22,7 +21,7 @@ public class DiaryAppServiceTest{
         CreateDiaryRequest request = new CreateDiaryRequest();
         request.setUsername("user name");
         request.setPassword("password");
-        service.createDiary(request);
+        service.register(request);
         Assertions.assertEquals(1,service.count());
     }
     @Test
@@ -30,7 +29,7 @@ public class DiaryAppServiceTest{
         CreateDiaryRequest request = new CreateDiaryRequest();
         request.setUsername("name");
         request.setPassword("password");
-        Diary diary = service.createDiary(request);
+        Diary diary = service.register(request);
         Assertions.assertEquals("name",diary.getUsername() );
         Assertions.assertEquals(1, service.count());
         service.deleteDiary("name");
@@ -45,15 +44,20 @@ public class DiaryAppServiceTest{
         CreateDiaryRequest request = new CreateDiaryRequest();
         request.setUsername("name");
         request.setPassword("password");
-        Diary diary = service.createDiary(request);
+        Diary diary = service.register(request);
         Assertions.assertEquals("name",diary.getUsername() );
-        Assertions.assertThrows(UserAlreadyExistException.class,()->service.createDiary(request));
+        Assertions.assertThrows(UserAlreadyExistException.class,()->service.register(request));
     }
     @Test
-    void testLoginDetailsAreValidBeforeCreation(){
+    void testLoginDetailsAreValidBeforeCreatingDiary(){
         CreateDiaryRequest request = new CreateDiaryRequest();
         request.setUsername("name");
         request.setPassword("");
-        assertThrows(InvalidDetailsException.class,()->service.createDiary(request));
+        assertThrows(InvalidDetailsException.class,()->service.register(request));
+        CreateDiaryRequest newRequest = new CreateDiaryRequest();
+        newRequest.setUsername("");
+        newRequest.setPassword("name");
+        assertThrows(InvalidDetailsException.class,()->service.register(newRequest));
     }
+
 }

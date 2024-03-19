@@ -4,6 +4,7 @@ import data.models.Diary;
 import data.repositories.DiaryImp;
 import data.repositories.DiaryRepository;
 import dtos.CreateDiaryRequest;
+import dtos.DiaryLoginRequest;
 import exceptions.DiaryNotFoundException;
 import exceptions.InvalidDetailsException;
 import exceptions.UserAlreadyExistException;
@@ -17,7 +18,7 @@ public class DiaryAppService implements DiaryServices{
             throw new InvalidDetailsException();
     }
     @Override
-    public Diary createDiary(CreateDiaryRequest loginRequest){
+    public Diary register(CreateDiaryRequest loginRequest){
         validateRequest(loginRequest);
         Diary diary = new Diary();
         diary.setUsername(loginRequest.getUserName());
@@ -41,5 +42,30 @@ public class DiaryAppService implements DiaryServices{
     @Override
     public long count(){
         return diaryRepository.count();
+    }
+
+    @Override
+    public void addEntry(EntryRequest entryRequest){
+
+    }
+
+    @Override
+    public void login(DiaryLoginRequest diaryLoginRequest){
+
+    }
+
+    @Override
+    public void logOut(){
+
+    }
+
+    @Override
+    public void delete(Diary diary){
+
+    }
+
+    @Override
+    public boolean findDiary(String username){
+        return false;
     }
 }
