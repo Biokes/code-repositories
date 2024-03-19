@@ -2,15 +2,10 @@ package dtos;
 
 public class DiaryLoginRequest{
     public DiaryLoginRequest(){}
-    private String userName;
     private String password;
 
     public String getUserName(){
-        return userName;
-    }
-
-    public void setUserName(String userName){
-        this.userName=userName;
+        return username;
     }
 
     public String getPassword(){
@@ -20,4 +15,9 @@ public class DiaryLoginRequest{
     public void setPassword(String password){
         this.password=password;
     }
+
+    public void setUsername(String userName){
+        this.username= userName;
+    }
+    private String username;
 }

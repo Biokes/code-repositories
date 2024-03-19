@@ -1,6 +1,7 @@
 package diaryServicesTest;
 import data.models.Diary;
 import dtos.CreateDiaryRequest;
+import dtos.DiaryLoginRequest;
 import exceptions.InvalidDetailsException;
 import exceptions.UserAlreadyExistException;
 import org.junit.jupiter.api.Assertions;
@@ -59,5 +60,16 @@ public class DiaryAppServiceTest{
         newRequest.setPassword("name");
         assertThrows(InvalidDetailsException.class,()->service.register(newRequest));
     }
-
+    @Test
+    void testThatUserCanlogIn(){
+        CreateDiaryRequest request = new CreateDiaryRequest();
+        request.setUsername("user name");
+        request.setPassword("password");
+        Diary diary = service.register(request);
+        DiaryLoginRequest loginRequest = new DiaryLoginRequest();
+        loginRequest.setUsername("user name");
+        loginRequest.setPassword("password");
+        service.login(loginRequest);
+        Assertions.assertTrue(diary.isLoggedIn());
+    }
 }
