@@ -51,7 +51,8 @@ public class DiaryServiceImpo implements DiaryServices{
 
     }
     public Entry createEntry(Entry entry){
-        return null;
+        entries.save(entry);
+        return entry;
     }
     public void login(){
 
