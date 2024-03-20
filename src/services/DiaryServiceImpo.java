@@ -21,13 +21,13 @@ public class DiaryServiceImpo implements DiaryServices{
         return diaryRepository.count();
     }
     public Diary findDiary(String userName){
-        if(isExisting(userName))
+        if(diaryRepository.findDiary(userName) == null)
             throw new DiaryNotFoundException();
         return diaryRepository.findDiary(userName);
     }
     private void validate(RegisterDiary request){
         validateFields(request);
-        if(findDiary(request.getUserName( )) != null)
+        if(diaryRepository.findDiary(request.getUserName( )) != null)
             throw new UserAlreadyExistException();
     }
     private void validateFields(RegisterDiary request){
@@ -37,9 +37,7 @@ public class DiaryServiceImpo implements DiaryServices{
             throw new InvalidDetailsException();
     }
     private boolean isExisting(String userName){
-        if(findDiary(userName) == null)
-            return false;
-        return true;
+        return diaryRepository.findDiary(userName)!= null;
     }
     private final DiaryRepository diaryRepository = new DiaryImp();
 }
