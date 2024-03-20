@@ -3,10 +3,7 @@ package services;
 
 import data.models.Diary;
 import data.models.Entry;
-import dtos.EntryCreateRequest;
-import dtos.LogOutRequest;
-import dtos.RegisterDiary;
-import dtos.UpdateRequest;
+import dtos.*;
 
 public interface DiaryServices{
 
@@ -18,5 +15,5 @@ public interface DiaryServices{
     void logOut(LogOutRequest logOutRequest);
     void UpdateEntry(UpdateRequest request);
     Entry createEntry(EntryCreateRequest request);
-    void deleteEntry();
+    void deleteEntry(DeleteEntryRequest request);
 }

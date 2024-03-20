@@ -1,5 +1,6 @@
 package diaryServicesTest;
 import data.models.Diary;
+import dtos.DeleteEntryRequest;
 import dtos.EntryCreateRequest;
 import dtos.LogOutRequest;
 import dtos.RegisterDiary;
@@ -91,5 +92,7 @@ public class DiaryAppServiceTest{
         diaryService.createDiary(request);
         EntryCreateRequest entryRequest = new EntryCreateRequest();
         diaryService.createEntry(entryRequest);
+        DeleteEntryRequest deleteEntryRequest = new DeleteEntryRequest("user name", "password","my gist");
+        diaryService.deleteEntry(entryRequest);
     }
 }
