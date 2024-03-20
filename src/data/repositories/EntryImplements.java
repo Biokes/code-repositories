@@ -2,13 +2,15 @@ package data.repositories;
 
 import data.models.Entry;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EntryImplements implements EntryRepository{
 
     @Override
     public Entry save(Entry entry){
-        return null;
+        entryRepo.add(entry);
+        return entry;
     }
 
     @Override
@@ -28,7 +30,7 @@ public class EntryImplements implements EntryRepository{
 
     @Override
     public long count(){
-        return 0;
+        return entryRepo.size();
     }
 
     @Override
@@ -50,4 +52,5 @@ public class EntryImplements implements EntryRepository{
     public Entry findEntryByAuthour(String author){
         return null;
     }
+    private List<Entry> entryRepo = new ArrayList<>();
 }
