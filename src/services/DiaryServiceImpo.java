@@ -1,4 +1,4 @@
 package services;
 
-public class DiaryServiceImpo{
+public class DiaryServiceImpo implements DiaryServices{
 }
