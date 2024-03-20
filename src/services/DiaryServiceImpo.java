@@ -3,10 +3,16 @@ import data.models.Diary;
 import data.models.Entry;
 import data.repositories.DiaryImp;
 import data.repositories.DiaryRepository;
+import data.repositories.EntryImplements;
+import data.repositories.EntryRepository;
 import dtos.*;
 import exceptions.DiaryNotFoundException;
 import exceptions.InvalidDetailsException;
 import exceptions.UserAlreadyExistException;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class DiaryServiceImpo implements DiaryServices{
     public void createDiary(RegisterDiary request){
         validate(request);
@@ -44,19 +50,25 @@ public class DiaryServiceImpo implements DiaryServices{
     public void UpdateEntry(UpdateRequest request){
 
     }
+    public Entry createEntry(Entry entry){
+        return null;
+    }
     public void login(){
 
     }
-
-    @Override
-    public Entry createEntry(EntryCreateRequest request){
-        return null;
-    }
-
-    @Override
     public void deleteEntry(DeleteEntryRequest request){
 
     }
 
+    @Override
+    public List<Entry> findEnteries(String userName){
+        List<Entry> entriesFound = new ArrayList<>();
+        for(int counter = 0; counter <entries.count() ; counter++)
+            if(entries.findEntryByAuthour(userName).getAuthor().equalsIgnoreCase(userName))
+                entriesFound.add(entries.findEntryByAuthour(userName));
+        return entriesFound;
+    }
+
     private final DiaryRepository diaryRepository = new DiaryImp();
+    private final EntryRepository entries = new EntryImplements();
 }

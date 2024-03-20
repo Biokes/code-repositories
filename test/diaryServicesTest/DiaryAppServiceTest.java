@@ -1,5 +1,6 @@
 package diaryServicesTest;
 import data.models.Diary;
+import data.models.Entry;
 import dtos.DeleteEntryRequest;
 import dtos.EntryCreateRequest;
 import dtos.LogOutRequest;
@@ -90,9 +91,14 @@ public class DiaryAppServiceTest{
         request.setUserName("user name");
         request.setPassword("password");
         diaryService.createDiary(request);
-        EntryCreateRequest entryRequest = new EntryCreateRequest();
+        Entry entryRequest = new Entry();
+        entryRequest.setTitle("Title");
+        entryRequest.setAuthor(request.getUserName());
+        entryRequest.setBody("body");
         diaryService.createEntry(entryRequest);
-        DeleteEntryRequest deleteEntryRequest = new DeleteEntryRequest("user name", "password","my gist");
+        Assertions.assertEquals(1, diaryService.findEnteries(request.getUserName()).size());
+        DeleteEntryRequest deleteEntryRequest = new DeleteEntryRequest("user name", "password","Title");
         diaryService.deleteEntry(deleteEntryRequest);
+        Assertions.assertEquals(0, diaryService.findEnteries(request.getUserName()).size());
     }
 }
