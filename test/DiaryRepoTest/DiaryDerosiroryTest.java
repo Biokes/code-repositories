@@ -3,9 +3,12 @@ package DiaryRepoTest;
 import data.models.Diary;
 import data.repositories.DiaryImp;
 import data.repositories.DiaryRepository;
+import dtos.CreateDiaryRequest;
+import exceptions.InvalidDetailsException;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class DiaryDerosiroryTest{
     @Test

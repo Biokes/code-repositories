@@ -1,4 +1,5 @@
-package data.repositories;
+
+   package data.repositories;
 import data.models.Entry;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class EntryImplements implements EntryRepository{
         for(Entry entry : entries){
             if(entry.getId() == id)
                 entries.remove(entry);
-        return true;
+            return true;
         }
         return false;
     }
