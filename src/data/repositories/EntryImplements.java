@@ -1,12 +1,8 @@
 package data.repositories;
-
 import data.models.Entry;
-
 import java.util.ArrayList;
 import java.util.List;
-
 public class EntryImplements implements EntryRepository{
-
     public Entry save(Entry entry){
         entryRepo.add(entry);
         return entry;
@@ -14,14 +10,12 @@ public class EntryImplements implements EntryRepository{
     public List<Entry> findAll(){
         return entryRepo;
     }
-
     public Entry findByTitle(String title){
         for(Entry entry : entryRepo)
             if(entry.getTitle().equalsIgnoreCase( title ))
                 return entry;
         return null;
     }
-
     public Entry findById(int id){
         for(Entry entry : entryRepo)
             if(entry.getId() ==  id )
@@ -39,7 +33,6 @@ public class EntryImplements implements EntryRepository{
             }
         return false;
     }
-
     @Override
     public boolean deleteByEntry(Entry entry){
         for(Entry entrygiven : entryRepo)
@@ -49,7 +42,6 @@ public class EntryImplements implements EntryRepository{
             }
         return false;
     }
-
     @Override
     public Entry findEntriesByTitle(String title){
         for(Entry entrygiven : entryRepo)
@@ -58,7 +50,6 @@ public class EntryImplements implements EntryRepository{
         }
         return null;
     }
-
     @Override
     public Entry findEntryByAuthour(String author){
         for(Entry entrygiven : entryRepo)
