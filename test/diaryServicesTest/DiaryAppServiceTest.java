@@ -1,5 +1,6 @@
 package diaryServicesTest;
 import data.models.Diary;
+import dtos.EntryCreateRequest;
 import dtos.LogOutRequest;
 import dtos.RegisterDiary;
 import exceptions.DiaryNotFoundException;
@@ -88,7 +89,7 @@ public class DiaryAppServiceTest{
         request.setUserName("user name");
         request.setPassword("password");
         diaryService.createDiary(request);
-        EntryRequest request = new EntryRequest();
+        EntryCreateRequest entryRequest = new EntryCreateRequest();
         diaryService.createEntry(entryRequest);
     }
 }
