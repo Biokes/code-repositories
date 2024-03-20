@@ -22,9 +22,33 @@ public class EntryRepoTest{
     }
     @Test
     public void findallEntry_testAllEntryIsGotten(){
-        assertEquals(0, entyrRepo.findAll());
+        assertEquals(0, entyrRepo.findAll().size());
         entyrRepo.save(new Entry());
         entyrRepo.save(new Entry());
-        assertEquals(2, entyrRepo.findAll());
+        assertEquals(2, entyrRepo.findAll().size());
     }
+    @Test
+    public void findEntryById_testEntryISGotten(){
+        Entry entry = new Entry();
+        entry.setId(1);
+        entyrRepo.save(entry);
+        assertEquals(entry, entyrRepo.findById(1));
+    }
+   @Test
+    void findEntryByTitle_testEntryIsReturned(){
+        Entry entry = new Entry();
+        entry.setTitle("name");
+        entry.setId(5);
+        entyrRepo.save(entry);
+        assertEquals(entry, entyrRepo.findByTitle("name"));
+   }
+   @Test
+   public void deleteEntryById_testEntryIsDeleted(){
+       Entry entry = new Entry();
+       entry.setTitle("name");
+       entry.setId(5);
+       entyrRepo.save(entry);
+       entyrRepo.deleteById(5);
+       assertEquals(0, entyrRepo.count());
+   }
 }

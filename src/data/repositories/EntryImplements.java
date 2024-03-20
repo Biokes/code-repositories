@@ -15,16 +15,22 @@ public class EntryImplements implements EntryRepository{
 
     @Override
     public List<Entry> findAll(){
-        return null;
+        return entryRepo;
     }
 
     @Override
     public Entry findByTitle(String title){
+        for(Entry entry : entryRepo)
+            if(entry.getTitle().equalsIgnoreCase( title ))
+                return entry;
         return null;
     }
 
     @Override
     public Entry findById(int id){
+        for(Entry entry : entryRepo)
+            if(entry.getId() ==  id )
+                return entry;
         return null;
     }
 
