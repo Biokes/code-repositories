@@ -1,13 +1,10 @@
 package DiaryRepoTest;
-
-
 import data.models.Entry;
 import data.repositories.EntryImplements;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
-
 public class EntryRepoTest{
     private EntryImplements entyrRepo= new EntryImplements();
     @BeforeEach
@@ -52,5 +49,22 @@ public class EntryRepoTest{
        assertEquals(0, entyrRepo.count());
    }
    @Test
-    public void deleteEntryByTitle_testEntryIsDeleted(){}
+    public void  deleteEntryByEntry_testEntryIsDeleted(){
+       Entry entry = new Entry();
+       entry.setTitle("name");
+       entry.setId(5);
+       entyrRepo.save(entry);
+       assertEquals(1, entyrRepo.count());
+       entyrRepo.deleteByEntry(entry);
+       assertEquals(0, entyrRepo.count());
+   }
+   @Test
+    public void findEntryByTitle_testEntryIsFound(){
+       Entry entry = new Entry();
+       entry.setAuthor("name");
+       entry.setId(5);
+       entyrRepo.save(entry);
+       assertEquals(1, entyrRepo.count());
+       assertEquals(entry, entyrRepo.findEntryByAuthour("name"));
+   }
 }

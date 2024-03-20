@@ -42,17 +42,30 @@ public class EntryImplements implements EntryRepository{
 
     @Override
     public boolean deleteByEntry(Entry entry){
+        for(Entry entrygiven : entryRepo)
+            if(entrygiven == entry){
+                entryRepo.remove(entry);
+                return true;
+            }
         return false;
     }
 
     @Override
     public Entry findEntriesByTitle(String title){
+        for(Entry entrygiven : entryRepo)
+            if(entrygiven.getTitle().equalsIgnoreCase(title)){
+             return entrygiven;
+        }
         return null;
     }
 
     @Override
     public Entry findEntryByAuthour(String author){
+        for(Entry entrygiven : entryRepo)
+            if(entrygiven.getAuthor().equalsIgnoreCase(author)){
+                return entrygiven;
+            }
         return null;
     }
-    private List<Entry> entryRepo = new ArrayList<>();
+    private final List<Entry> entryRepo = new ArrayList<>();
 }
