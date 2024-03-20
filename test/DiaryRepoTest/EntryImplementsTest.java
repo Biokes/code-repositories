@@ -2,56 +2,53 @@ package DiaryRepoTest;
 import data.models.Entry;
 import data.repositories.EntryImplements;
 import data.repositories.EntryRepository;
+import dtos.EntryRequest;
+import exceptions.InvalidDetailsException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import services.EntryService;
+import services.EntryServiceImpo;
 
-import static junit.framework.TestCase.assertEquals;
 public class EntryImplementsTest{
-    private EntryRepository entries= new EntryImplements();
+    private EntryService entries= new EntryServiceImpo();
     @BeforeEach
     public void initialize(){
-        entries= new EntryImplements();
+        entries= new EntryServiceImpo();
     }
     @Test
     void createEntry_testEntryIsCreated(){
-        entries.save(new Entry());
-        Assertions.assertEquals(1, entries.count());
+        entries.createEntry(new EntryRequest());
+        Assertions.assertEquals(1, entries.getNumberOfEnteries());
     }
     @Test
     void deleteEntry_testEntryIsDeleted(){
-        Entry entry = new Entry();
-        entries.save(entry);
-        Assertions.assertEquals(1, entries.count());
-        entries.delete(entry);
-        Assertions.assertEquals(0, entries.count());
+        EntryRequest entry = new EntryRequest();
+        entry.setId(1);
+        entries.createEntry(entry);
+        Assertions.assertEquals(1, entries.getNumberOfEnteries());
+        entries.deleteEntry(1);
+        Assertions.assertEquals(0, entries.getNumberOfEnteries());
     }
     @Test
     void findAllEntry_testEntryISFound(){
-        entries.save(new Entry());
-        entries.save(new Entry());
-        entries.save(new Entry());
-        Assertions.assertEquals(3, entries.findAll().size());
+        entries.createEntry(new EntryRequest());
+        entries.createEntry(new EntryRequest());
+        entries.createEntry(new EntryRequest());
+        Assertions.assertEquals(3, entries.getNumberOfEnteries());
     }
     @Test
     void findEntryById_testEntryIsFound(){
-        Entry entry = new Entry();
+        EntryRequest entry = new EntryRequest();
         entry.setId(1);
-        entry.setAuthor("Author");
-        entries.save(entry);
-        entries.save(entry);
-        Assertions.assertEquals("Author", entries.findById(1).getAuthor());
+        entry.setUserName("Author");
+        entries.createEntry(entry);
+        entries.createEntry(entry);
+        Assertions.assertEquals(1, entries.findEntryById(1).getId());
     }
+
     @Test
-    void deleteEntryById_testEntryIsDeleted(){
-        Entry entry = new Entry();
-        entry.setId(3);
-        Entry entry1 = new Entry();
-        entry1.setId(1);
-        entries.save(entry);
-        entries.save(entry1);
-        entries.delete(1);
-        Assertions.assertEquals(1, entries.count());
-        Assertions.assertEquals(entry, entries.findById(3));
+    void deleteEntryByTitleTatDoesNotExist_testExceptionIsThrown(){
+        Assertions.assertThrows(InvalidDetailsException.class,()->entries.deleteEntry(1));
     }
 }

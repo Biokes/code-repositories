@@ -20,7 +20,6 @@ public class DiaryImp implements DiaryRepository{
     public void deleteDiary(String username){
         diaries.removeIf(currentDiary-> currentDiary.getUsername().equalsIgnoreCase(username));
     }
-
     @Override
     public Diary findDiary(String username){
         for(Diary diary1 : diaries)

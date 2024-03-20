@@ -12,19 +12,37 @@ public class EntryImplements implements EntryRepository{
     public List<Entry> findAll(){
         return entries;
     }
-    public Entry findById(int id){
+    @Override
+    public Entry findById(String title){
         for( Entry entry: entries){
-            if(entry.getId() == id)
+            if(entry.getTitle().equalsIgnoreCase(title))
                 return entry;
         }
+        return null;
+    }
+    public Entry findById(int id){
+        for(Entry entry : entries)
+            if(entry.getId() == id)
+                return entry;
         return null;
     }
     public long count(){
 
         return entries.size();
     }
-    public void delete(int id){
-        entries.remove(findById(id));
+
+    @Override
+    public boolean delete(int id){
+        for(Entry entry : entries){
+            if(entry.getId() == id)
+                entries.remove(entry);
+        return true;
+        }
+        return false;
+    }
+
+    public void delete(String title){
+        entries.removeIf(entry -> entry.getTitle().equalsIgnoreCase(title));
     }
     public void delete(Entry entryGiven){
         for(Entry entry : entries)
