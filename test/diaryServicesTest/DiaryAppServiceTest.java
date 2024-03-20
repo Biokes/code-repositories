@@ -1,5 +1,6 @@
 package diaryServicesTest;
 
+import dtos.RegisterDiary;
 import org.junit.jupiter.api.Test;
 
 public class DiaryAppServiceTest{
