@@ -75,7 +75,12 @@ public class DiaryAppServiceTest{
         Assertions.assertThrows(DiaryNotFoundException.class,()->diaryService.findDiary("user NAm"));
     }
     @Test
-    void createdEntry_testEntryIsCreated(){}
+    void createdEntry_testEntryIsCreated(){
+        RegisterDiary request = new RegisterDiary();
+        request.setUserName("user name");
+        request.setPassword("password");
+        diaryService.createDiary(request);
+    }
     @Test
     void deleteEntry_testEntryIsDeleted(){}
 }
