@@ -3,6 +3,7 @@ import data.models.Diary;
 import data.models.Entry;
 import data.repositories.DiaryImp;
 import data.repositories.DiaryRepository;
+import dtos.LogOutRequest;
 import dtos.RegisterDiary;
 import exceptions.DiaryNotFoundException;
 import exceptions.InvalidDetailsException;
@@ -27,8 +28,8 @@ public class DiaryServiceImpo implements DiaryServices{
     public void login(){
 
     }
-    public void logOut(){
-
+    public void logOut(LogOutRequest logOutRequest){
+        findDiary(logOutRequest.getUserName( )).logOut(true);
     }
     public void UpdateEntry(){
 

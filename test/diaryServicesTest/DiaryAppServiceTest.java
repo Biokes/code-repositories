@@ -1,5 +1,6 @@
 package diaryServicesTest;
 import data.models.Diary;
+import dtos.LogOutRequest;
 import dtos.RegisterDiary;
 import exceptions.DiaryNotFoundException;
 import exceptions.InvalidDetailsException;
@@ -55,17 +56,6 @@ public class DiaryAppServiceTest{
         Assertions.assertFalse(diary.isLocked());
     }
     @Test
-    void testDiaryIsLockedAfterLoginOut(){
-        RegisterDiary request = new RegisterDiary();
-        request.setUserName("user name");
-        request.setPassword("password");
-        diaryService.createDiary(request);
-        Diary diary = diaryService.findDiary("user NAme");
-        Assertions.assertFalse(diary.isLocked());
-        diaryService.findDiary("user NAME").logOut(true);
-        Assertions.assertTrue(diary.isLocked());
-    }
-    @Test
     void testIncorrectDetailsThrowsExceptionForLogin(){
         RegisterDiary request = new RegisterDiary();
         request.setUserName("user name");
@@ -81,6 +71,19 @@ public class DiaryAppServiceTest{
         request.setPassword("password");
         diaryService.createDiary(request);
     }
+    @Test
+    void testDiaryIsLockedAfterLoginOut(){
+        RegisterDiary request = new RegisterDiary();
+        request.setUserName("user name");
+        request.setPassword("password");
+        diaryService.createDiary(request);
+        Diary diary = diaryService.findDiary("user NAme");
+        Assertions.assertFalse(diary.isLocked());
+        LogOutRequest logOutRequest = new LogOutRequest("user name");
+        diaryService.logOut(logOutRequest);
+        Assertions.assertTrue(diary.isLocked());
+    }
+
     @Test
     void deleteEntry_testEntryIsDeleted(){}
 }
