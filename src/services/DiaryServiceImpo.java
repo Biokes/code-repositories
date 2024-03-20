@@ -6,6 +6,7 @@ import data.repositories.DiaryRepository;
 import dtos.EntryCreateRequest;
 import dtos.LogOutRequest;
 import dtos.RegisterDiary;
+import dtos.UpdateRequest;
 import exceptions.DiaryNotFoundException;
 import exceptions.InvalidDetailsException;
 import exceptions.UserAlreadyExistException;
@@ -29,7 +30,7 @@ public class DiaryServiceImpo implements DiaryServices{
     public void logOut(LogOutRequest logOutRequest){
         findDiary(logOutRequest.getUserName( )).logOut(true);
     }
-    public void UpdateEntry(){
+    public void UpdateEntry(UpdateRequest request){
 
     }
     public void login(){
