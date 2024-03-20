@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 public class DiaryAppServiceTest{
     @Test
-    void test(){}
+    void createDiary_TestDiaryIsCreated(){
+        RegisterDiary reques = new RegisterDiary();
+    }
 
 }
