@@ -7,18 +7,14 @@ import java.util.List;
 
 public class EntryImplements implements EntryRepository{
 
-    @Override
     public Entry save(Entry entry){
         entryRepo.add(entry);
         return entry;
     }
-
-    @Override
     public List<Entry> findAll(){
         return entryRepo;
     }
 
-    @Override
     public Entry findByTitle(String title){
         for(Entry entry : entryRepo)
             if(entry.getTitle().equalsIgnoreCase( title ))
@@ -26,21 +22,21 @@ public class EntryImplements implements EntryRepository{
         return null;
     }
 
-    @Override
     public Entry findById(int id){
         for(Entry entry : entryRepo)
             if(entry.getId() ==  id )
                 return entry;
         return null;
     }
-
-    @Override
     public long count(){
         return entryRepo.size();
     }
-
-    @Override
     public boolean deleteById(int id){
+        for(Entry entry : entryRepo)
+            if(entry.getId() == id ){
+                entryRepo.remove(entry);
+                return true;
+            }
         return false;
     }
 
