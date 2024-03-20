@@ -24,7 +24,7 @@ public class DiaryAppServiceTest{
         request.setUserName("user name");
         request.setPassword("password");
         diaryService.createDiary(request);
-        assertEquals(1, diaryService.count());
+        Assertions.assertEquals(1, diaryService.count());
     }
     @Test
     void testDiaryWithExistingUsernameCannotBeCreated(){
@@ -32,7 +32,7 @@ public class DiaryAppServiceTest{
         request.setUserName("user name");
         request.setPassword("password");
         diaryService.createDiary(request);
-        assertEquals(1, diaryService.count());
+        Assertions.assertEquals(1, diaryService.count());
         assertThrows(UserAlreadyExistException.class,()->diaryService.createDiary(request));
     }
     @Test
@@ -52,10 +52,10 @@ public class DiaryAppServiceTest{
         request.setPassword("password");
         diaryService.createDiary(request);
         Diary diary = diaryService.findDiary("user NAme");
-        assertFalse(diary.isLocked());
+        Assertions.assertFalse(diary.isLocked());
     }
     @Test
-    void testDiaryIsLockedAfterLogingOut(){
+    void testDiaryIsLockedAfterLoginOut(){
         RegisterDiary request = new RegisterDiary();
         request.setUserName("user name");
         request.setPassword("password");
@@ -77,5 +77,5 @@ public class DiaryAppServiceTest{
     @Test
     void createdEntry_testEntryIsCreated(){}
     @Test
-    void deleteEnry_testEntryIsDeleted(){}
+    void deleteEntry_testEntryIsDeleted(){}
 }

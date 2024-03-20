@@ -1,13 +1,12 @@
 package services;
-
 import data.models.Diary;
+import data.models.Entry;
 import data.repositories.DiaryImp;
 import data.repositories.DiaryRepository;
 import dtos.RegisterDiary;
 import exceptions.DiaryNotFoundException;
 import exceptions.InvalidDetailsException;
 import exceptions.UserAlreadyExistException;
-
 public class DiaryServiceImpo implements DiaryServices{
     public void createDiary(RegisterDiary request){
         validate(request);
@@ -24,6 +23,21 @@ public class DiaryServiceImpo implements DiaryServices{
         if(diaryRepository.findDiary(userName) == null)
             throw new DiaryNotFoundException();
         return diaryRepository.findDiary(userName);
+    }
+    public void login(){
+
+    }
+    public void logOut(){
+
+    }
+    public void UpdateEntry(){
+
+    }
+    public Entry createEntry(){
+        return null;
+    }
+    public void deleteEntry(){
+
     }
     private void validate(RegisterDiary request){
         validateFields(request);
