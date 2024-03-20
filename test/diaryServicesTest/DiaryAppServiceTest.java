@@ -93,6 +93,6 @@ public class DiaryAppServiceTest{
         EntryCreateRequest entryRequest = new EntryCreateRequest();
         diaryService.createEntry(entryRequest);
         DeleteEntryRequest deleteEntryRequest = new DeleteEntryRequest("user name", "password","my gist");
-        diaryService.deleteEntry(entryRequest);
+        diaryService.deleteEntry(deleteEntryRequest);
     }
 }
