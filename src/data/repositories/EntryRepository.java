@@ -8,8 +8,11 @@ import java.util.List;
 public interface EntryRepository{
     Entry save(Entry entry);
     List<Entry> findAll();
-    Entry findById(String title);
+    Entry findByTitle(String title);
+    Entry findById(int id);
     long count();
-    boolean delete(int id);
-    void delete(Entry entry);
+    boolean deleteById(int id);
+    boolean deleteByEntry(Entry entry);
+    Entry findEntriesByTitle(String title);
+    Entry findEntryByAuthour(String author);
 }

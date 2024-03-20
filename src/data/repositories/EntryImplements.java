@@ -1,55 +1,53 @@
+package data.repositories;
 
-   package data.repositories;
 import data.models.Entry;
 
-import java.util.ArrayList;
 import java.util.List;
+
 public class EntryImplements implements EntryRepository{
-    private final List<Entry> entries = new ArrayList<>();
+
+    @Override
     public Entry save(Entry entry){
-        entries.add(entry);
-        return entry;
+        return null;
     }
+
+    @Override
     public List<Entry> findAll(){
-        return entries;
-    }
-    @Override
-    public Entry findById(String title){
-        for( Entry entry: entries){
-            if(entry.getTitle().equalsIgnoreCase(title))
-                return entry;
-        }
         return null;
     }
+
+    @Override
+    public Entry findByTitle(String title){
+        return null;
+    }
+
+    @Override
     public Entry findById(int id){
-        for(Entry entry : entries)
-            if(entry.getId() == id)
-                return entry;
         return null;
-    }
-    public long count(){
-
-        return entries.size();
     }
 
     @Override
-    public boolean delete(int id){
-        for(Entry entry : entries){
-            if(entry.getId() == id)
-                entries.remove(entry);
-            return true;
-        }
+    public long count(){
+        return 0;
+    }
+
+    @Override
+    public boolean deleteById(int id){
         return false;
     }
 
-    public void delete(String title){
-        entries.removeIf(entry -> entry.getTitle().equalsIgnoreCase(title));
+    @Override
+    public boolean deleteByEntry(Entry entry){
+        return false;
     }
-    public void delete(Entry entryGiven){
-        for(Entry entry : entries)
-            if(entry == entryGiven){
-                entries.remove(entryGiven);
-                break;
-            }
+
+    @Override
+    public Entry findEntriesByTitle(String title){
+        return null;
+    }
+
+    @Override
+    public Entry findEntryByAuthour(String author){
+        return null;
     }
 }
