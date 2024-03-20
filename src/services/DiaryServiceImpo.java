@@ -42,7 +42,7 @@ public class DiaryServiceImpo implements DiaryServices{
     }
     private void validate(RegisterDiary request){
         validateFields(request);
-        if(diaryRepository.findDiary(request.getUserName( )) != null)
+        if(isExisting(request.getUserName( )))
             throw new UserAlreadyExistException();
     }
     private void validateFields(RegisterDiary request){
