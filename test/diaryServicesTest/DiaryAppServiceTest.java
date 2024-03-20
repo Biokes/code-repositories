@@ -12,7 +12,6 @@ import services.DiaryServiceImpo;
 import services.DiaryServices;
 
 import static org.junit.Assert.*;
-
 public class DiaryAppServiceTest{
     private DiaryServices diaryService;
     @BeforeEach
@@ -81,9 +80,8 @@ public class DiaryAppServiceTest{
         Assertions.assertFalse(diary.isLocked());
         LogOutRequest logOutRequest = new LogOutRequest("user name");
         diaryService.logOut(logOutRequest);
-        Assertions.assertTrue(diary.isLocked());
+        Assertions.assertTrue(diaryService.findDiary("user NAme").isLocked());
     }
-
     @Test
     void deleteEntry_testEntryIsDeleted(){}
 }
