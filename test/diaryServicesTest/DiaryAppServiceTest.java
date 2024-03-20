@@ -83,5 +83,12 @@ public class DiaryAppServiceTest{
         Assertions.assertTrue(diaryService.findDiary("user NAme").isLocked());
     }
     @Test
-    void deleteEntry_testEntryIsDeleted(){}
+    void LoginDeleteEntry_testEntryIsDeleted(){
+        RegisterDiary request = new RegisterDiary();
+        request.setUserName("user name");
+        request.setPassword("password");
+        diaryService.createDiary(request);
+        EntryRequest request = new EntryRequest();
+        diaryService.createEntry(entryRequest);
+    }
 }
