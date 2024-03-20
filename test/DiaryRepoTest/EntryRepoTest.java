@@ -51,4 +51,6 @@ public class EntryRepoTest{
        entyrRepo.deleteById(5);
        assertEquals(0, entyrRepo.count());
    }
+   @Test
+    public void deleteEntryByTitle_testEntryIsDeleted(){}
 }
