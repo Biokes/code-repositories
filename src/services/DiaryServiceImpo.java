@@ -23,6 +23,14 @@ public class DiaryServiceImpo implements DiaryServices{
         diary.logOut(false);
         diaryRepository.save(diary);
     }
+
+    @Override
+    public void deleteDiary(LoginRequest diary){
+        if(findDiary(diary.getUserName( )).getPassword().equals(diary.getPassword()))
+            diaryRepository.deleteDiary(diary.getUserName());
+        else throw new DiaryNotFoundException();
+    }
+
     public long count(){
         return diaryRepository.count();
     }

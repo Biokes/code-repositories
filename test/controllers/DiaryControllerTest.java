@@ -1,5 +1,6 @@
 package controllers;
 
+import dtos.LoginRequest;
 import dtos.RegisterDiary;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,5 +24,11 @@ public class DiaryControllerTest{
         Assertions.assertEquals(1, diaryServices.count());
     }
     @Test
-    void deleteDiary_testDiaryIsDeleted(){}
+    void deleteDiaryNotCreated_testDiaryIsNotDeleted(){
+        DiaryController diaryServices = new DiaryController();
+        LoginRequest request = new LoginRequest();
+        request.setPassword("password");
+        request.setUserName("password");
+        Assertions.assertEquals("Invalid details Provided.",diaryServices.deleteDiary(request));
+    }
 }

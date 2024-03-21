@@ -10,7 +10,7 @@ import java.util.List;
 public interface DiaryServices{
 
     void createDiary(RegisterDiary request);
-
+    void deleteDiary(LoginRequest diary);
     long count();
     Diary findDiary(String userName);
     void login(LoginRequest loginRequest);
