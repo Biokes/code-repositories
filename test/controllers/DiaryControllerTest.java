@@ -1,10 +1,14 @@
 package controllers;
 import data.models.Entry;
+import dtos.EntryCreateRequest;
 import dtos.LogOutRequest;
 import dtos.LoginRequest;
 import dtos.RegisterDiary;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import services.DiaryServiceImpo;
+import services.DiaryServices;
+
 public class DiaryControllerTest{
     @Test
     void createDiaryInvalidDetails_testDiaryIsNotCreated(){
@@ -67,6 +71,7 @@ public class DiaryControllerTest{
         RegisterDiary request = new RegisterDiary();
         request.setUserName("userName");
         request.setPassword("password");
-        diaryServices.createEntry();
+        EntryCreateRequest createRequest = new EntryCreateRequest();
+        diaryServices.createEntry(createRequest);
     }
 }

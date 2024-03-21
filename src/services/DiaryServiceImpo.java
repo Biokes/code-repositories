@@ -54,8 +54,18 @@ public class DiaryServiceImpo implements DiaryServices{
     }
 
     @Override
-    public void createEntry(Entry entry){
-
+    public void createEntry(EntryCreateRequest createRequest){
+        if(diaryRepository.findDiary(createRequest.getAuthor( )).isLocked()){
+            Entry entry=new Entry( );
+            entry.setAuthor(createRequest.getAuthor( ));
+            entry.setId((int) entries.count( )+1);
+            entry.setBody(createRequest.getBody( ));
+            entry.setTitle(createRequest.getTitle( ));
+            entries.save(entry);
+        }
+        else{
+            throw new DiaryIsLockedException();
+        }
     }
 
     @Override

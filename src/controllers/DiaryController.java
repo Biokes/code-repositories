@@ -1,9 +1,11 @@
 package controllers;
 
 import data.models.Diary;
+import dtos.EntryCreateRequest;
 import dtos.LogOutRequest;
 import dtos.LoginRequest;
 import dtos.RegisterDiary;
+import exceptions.InvalidDetailsException;
 import services.DiaryServiceImpo;
 import services.DiaryServices;
 
@@ -35,20 +37,24 @@ public class DiaryController{
     }
 
     public String logOut(LogOutRequest logOutRequest){
-        services.logOut(logOutRequest);
-        return "Logged in successfully.";
+        try{
+            services.logOut(logOutRequest);
+            return "Logged in successfully.";
+        }catch (RuntimeException error){
+            return error.getMessage();
+        }
     }
-
-    public Diary findDiary(String userName){
-        return services.findDiary(userName);
-    }
-
     public String logIn(LoginRequest logOutRequest){
-        services.login(logOutRequest);
-        return "Logged out Successfully";
+        try{
+            services.login(logOutRequest);
+            return "Logged out Successfully";
+        }catch( InvalidDetailsException exception){
+           return exception.getMessage( );
+        }
+
     }
 
-    public void createEntry(){
+    public void createEntry(EntryCreateRequest request){
 
     }
 }
