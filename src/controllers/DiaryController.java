@@ -47,4 +47,8 @@ public class DiaryController{
         services.login(logOutRequest);
         return "Logged out Successfully";
     }
+
+    public void createEntry(){
+
+    }
 }

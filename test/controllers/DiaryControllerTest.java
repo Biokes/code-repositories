@@ -1,4 +1,5 @@
 package controllers;
+import data.models.Entry;
 import dtos.LogOutRequest;
 import dtos.LoginRequest;
 import dtos.RegisterDiary;
@@ -59,5 +60,13 @@ public class DiaryControllerTest{
         request2.setPassword(request.getPassword( ));
         diaryServices.logIn(request2);
         Assertions.assertFalse(diaryServices.findDiary(logOutRequest.getUserName()).isLocked());
+    }
+    @Test
+    void testEntryCanBeCreated(){
+        DiaryController diaryServices = new DiaryController();
+        RegisterDiary request = new RegisterDiary();
+        request.setUserName("userName");
+        request.setPassword("password");
+        diaryServices.createEntry();
     }
 }
