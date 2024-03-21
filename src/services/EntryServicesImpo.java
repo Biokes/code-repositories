@@ -7,7 +7,7 @@ import dtos.UpdateRequest;
 
 import java.util.List;
 
-public class EntryServicesmpo implements EntryServices{
+public class EntryServicesImpo implements EntryServices{
     @Override
     public Entry createEntry(EntryCreateRequest request){
         return null;

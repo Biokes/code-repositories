@@ -1,12 +1,12 @@
 package diaryServicesTest;
 
 import org.junit.jupiter.api.BeforeEach;
-import services.EntryServicesmpo;
+import services.EntryServicesImpo;
 
 public class EntryServiceTest{
-    private EntryServicesmpo servicesImpo;
+    private EntryServicesImpo servicesImpo;
     @BeforeEach
     void initialize(){
-        servicesImpo = new EntryServicesmpo();
+        servicesImpo = new EntryServicesImpo();
     }
 }

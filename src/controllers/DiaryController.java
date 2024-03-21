@@ -6,8 +6,12 @@ import services.DiaryServices;
 
 public class DiaryController{
     public String createDiary(RegisterDiary request){
-         services.createDiary(request);
-         return null;
+        try{
+            services.createDiary(request);
+            return "Diary created Successfully.";
+        }catch(RuntimeException exception){
+            return "Invalid details Provided";
+        }
     }
     private DiaryServices services = new DiaryServiceImpo();
 }
