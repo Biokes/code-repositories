@@ -78,11 +78,7 @@ public class DiaryServiceImpo implements DiaryServices{
         Diary diary = diaryRepository.findDiary(request.getAuthor());
         if(!diary.isLocked()){
             if(diary.getPassword().equals(request.getPassword())){
-                for(Entry entry1 : findEnteries(request.getAuthor())){
-                    if( entry1.getTitle( ).equalsIgnoreCase(entry.getTitle( )) )
-                        entries.deleteByEntry(entry);
-                    return;
-                }
+                 entries.deleteByEntry(entry);
             }else throw new InvalidDetailsException();
         }else throw new DiaryIsLockedException();
     }
