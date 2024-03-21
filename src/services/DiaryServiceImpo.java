@@ -35,6 +35,7 @@ public class DiaryServiceImpo implements DiaryServices{
     public void login(LoginRequest loginRequest){
         if(diaryRepository.findDiary(loginRequest.getUserName( )).getPassword().equals(loginRequest.getPassword())){
             diaryRepository.findDiary(loginRequest.getUserName()).logOut(false);
+            return;
         }
         else throw new InvalidDetailsException();
     }
