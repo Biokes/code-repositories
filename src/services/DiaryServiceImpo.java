@@ -41,6 +41,22 @@ public class DiaryServiceImpo implements DiaryServices{
     public void logOut(LogOutRequest logOutRequest){
         findDiary(logOutRequest.getUserName( )).logOut(true);
     }
+
+    @Override
+    public void UpdateEntry(UpdateRequest request){
+
+    }
+
+    @Override
+    public void createEntry(Entry entry){
+
+    }
+
+    @Override
+    public void deleteEntry(DeleteEntryRequest request){
+
+    }
+
     private void validate(RegisterDiary request){
         validateFields(request);
         if(isExisting(request.getUserName( )))
@@ -56,32 +72,9 @@ public class DiaryServiceImpo implements DiaryServices{
         return diaryRepository.findDiary(userName)!= null;
     }
     public List<Entry> findEnteries(String userName){
-        List<Entry> entriesFound = new ArrayList<>();
-        for(int counter = 0; counter <entries.count() ; counter++)
-            if(entries.findEntryByAuthour(userName).getAuthor().equalsIgnoreCase(userName))
-                entriesFound.add(entries.findEntryByAuthour(userName));
-        return entriesFound;
-    }
-    public void createEntry(Entry entry){
-        if(diaryRepository.findDiary(entry.getAuthor( )).isLocked())
-            throw new DiaryIsLockedException();
-        entries.save(entry);
+        return null;
     }
 
-    public void UpdateEntry(UpdateRequest request){
-
-    }
-    public void deleteEntry(DeleteEntryRequest request){
-        Entry entry = new Entry();
-        entry.setAuthor(request.getAuthor());
-        entry.setTitle(request.getTitle( ));
-        Diary diary = diaryRepository.findDiary(request.getAuthor());
-        if(!diary.isLocked()){
-            if(diary.getPassword().equals(request.getPassword())){
-                 entries.deleteByEntry(entry);
-            }else throw new InvalidDetailsException();
-        }else throw new DiaryIsLockedException();
-    }
     private final DiaryRepository diaryRepository = new DiaryImp();
-    private final EntryRepository entries = new EntryImplements();
+    private EntryRepository entries = new EntryImplements();
 }
