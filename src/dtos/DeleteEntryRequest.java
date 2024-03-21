@@ -1,19 +1,19 @@
 package dtos;
 
 public class DeleteEntryRequest{
-    public DeleteEntryRequest(String userName, String password, String title){
-        this.username = userName;
+    public DeleteEntryRequest(String author, String password, String title){
+        this.author = author;
         this.password = password;
         this.title = title;
     }
-    private String username;
+    private String author;
 
-    public String getUsername(){
-        return username;
+    public String getAuthor(){
+        return author;
     }
 
     public void setUsername(String username){
-        this.username=username;
+        this.author=username;
     }
 
     public String getTitle(){

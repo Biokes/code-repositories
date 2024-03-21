@@ -31,7 +31,6 @@ public class DiaryServiceImpo implements DiaryServices{
             throw new DiaryNotFoundException();
         return diaryRepository.findDiary(userName);
     }
-
     public void login(LoginRequest loginRequest){
         if(diaryRepository.findDiary(loginRequest.getUserName( )).getPassword().equals(loginRequest.getPassword())){
             diaryRepository.findDiary(loginRequest.getUserName()).logOut(false);
@@ -39,7 +38,6 @@ public class DiaryServiceImpo implements DiaryServices{
         }
         else throw new InvalidDetailsException();
     }
-
     public void logOut(LogOutRequest logOutRequest){
         findDiary(logOutRequest.getUserName( )).logOut(true);
     }
@@ -75,12 +73,16 @@ public class DiaryServiceImpo implements DiaryServices{
     }
     public void deleteEntry(DeleteEntryRequest request){
         Entry entry = new Entry();
-        entry.setAuthor(request.getUsername());
+        entry.setAuthor(request.getAuthor());
         entry.setTitle(request.getTitle( ));
-        Diary diary = diaryRepository.findDiary(request.getUsername());
+        Diary diary = diaryRepository.findDiary(request.getAuthor());
         if(!diary.isLocked()){
-            if(diary.getUsername().equalsIgnoreCase(entry.getAuthor()) && diary.getPassword().equals(request.getPassword())){
-                 entries.deleteByEntry(entry);
+            if(diary.getPassword().equals(request.getPassword())){
+                for(Entry entry1 : findEnteries(request.getAuthor())){
+                    if( entry1.getTitle( ).equalsIgnoreCase(entry.getTitle( )) )
+                        entries.deleteByEntry(entry);
+                    return;
+                }
             }else throw new InvalidDetailsException();
         }else throw new DiaryIsLockedException();
     }

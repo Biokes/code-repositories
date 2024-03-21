@@ -101,4 +101,38 @@ public class DiaryAppServiceTest{
         diaryService.deleteEntry(deleteEntryRequest);
         Assertions.assertEquals(0, diaryService.findEnteries(request.getUserName()).size());
     }
+    @Test
+    void deleteEntryLogOut_testLogOut(){
+        RegisterDiary request = new RegisterDiary();
+        request.setUserName("user name");
+        request.setPassword("password");
+        diaryService.createDiary(request);
+        Entry entryRequest = new Entry();
+        entryRequest.setTitle("Title");
+        entryRequest.setAuthor(request.getUserName());
+        entryRequest.setBody("body");
+        diaryService.createEntry(entryRequest);
+        Assertions.assertEquals(1, diaryService.findEnteries(request.getUserName()).size());
+        DeleteEntryRequest deleteEntryRequest = new DeleteEntryRequest("user name", "password","Title");
+        diaryService.deleteEntry(deleteEntryRequest);
+        Assertions.assertEquals(0, diaryService.findEnteries(request.getUserName()).size());
+        LogOutRequest request1 = new LogOutRequest("user name");
+        diaryService.logOut(request1);
+        Assertions.assertTrue(diaryService.findDiary("user Name").isLocked());
+    }
+    @Test
+    void testToDeleteEntryWithIncorrectUsername(){
+        RegisterDiary request = new RegisterDiary();
+        request.setUserName("user name");
+        request.setPassword("password");
+        diaryService.createDiary(request);
+        Entry entryRequest = new Entry();
+        entryRequest.setTitle("Title");
+        entryRequest.setAuthor(request.getUserName());
+        entryRequest.setBody("body");
+        diaryService.createEntry(entryRequest);
+        Assertions.assertEquals(1, diaryService.findEnteries(request.getUserName()).size());
+        DeleteEntryRequest deleteEntryRequest = new DeleteEntryRequest("wrong user name", "password","Title");
+        assertThrows(InvalidDetailsException.class, ()->diaryService.deleteEntry(deleteEntryRequest));
+    }
 }
