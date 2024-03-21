@@ -1,6 +1,7 @@
 package controllers;
 
 import data.models.Diary;
+import dtos.LogOutRequest;
 import dtos.LoginRequest;
 import dtos.RegisterDiary;
 import services.DiaryServiceImpo;
@@ -33,4 +34,17 @@ public class DiaryController{
         }
     }
 
+    public String logOut(LogOutRequest logOutRequest){
+        services.logOut(logOutRequest);
+        return "Logged in successfully.";
+    }
+
+    public Diary findDiary(String userName){
+        return services.findDiary(userName);
+    }
+
+    public String logIn(LoginRequest logOutRequest){
+        services.login(logOutRequest);
+        return "Logged out Successfully";
+    }
 }

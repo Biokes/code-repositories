@@ -30,7 +30,6 @@ public class DiaryServiceImpo implements DiaryServices{
             diaryRepository.deleteDiary(diary.getUserName());
         else throw new DiaryNotFoundException();
     }
-
     public long count(){
         return diaryRepository.count();
     }
@@ -42,7 +41,6 @@ public class DiaryServiceImpo implements DiaryServices{
     public void login(LoginRequest loginRequest){
         if(diaryRepository.findDiary(loginRequest.getUserName( )).getPassword().equals(loginRequest.getPassword())){
             diaryRepository.findDiary(loginRequest.getUserName()).logOut(false);
-            return;
         }
         else throw new InvalidDetailsException();
     }
