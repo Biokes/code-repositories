@@ -13,7 +13,7 @@ public interface DiaryServices{
 
     long count();
     Diary findDiary(String userName);
-    void login();
+    void login(LoginRequest loginRequest);
     void logOut(LogOutRequest logOutRequest);
     void UpdateEntry(UpdateRequest request);
     void createEntry(Entry entry);

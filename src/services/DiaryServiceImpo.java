@@ -6,6 +6,7 @@ import data.repositories.DiaryRepository;
 import data.repositories.EntryImplements;
 import data.repositories.EntryRepository;
 import dtos.*;
+import exceptions.DiaryIsLockedException;
 import exceptions.DiaryNotFoundException;
 import exceptions.InvalidDetailsException;
 import exceptions.UserAlreadyExistException;
@@ -30,6 +31,14 @@ public class DiaryServiceImpo implements DiaryServices{
             throw new DiaryNotFoundException();
         return diaryRepository.findDiary(userName);
     }
+
+    public void login(LoginRequest loginRequest){
+        if(diaryRepository.findDiary(loginRequest.getUserName( )).getPassword().equals(loginRequest.getPassword())){
+            diaryRepository.findDiary(loginRequest.getUserName()).logOut(false);
+        }
+        else throw new InvalidDetailsException();
+    }
+
     public void logOut(LogOutRequest logOutRequest){
         findDiary(logOutRequest.getUserName( )).logOut(true);
     }
@@ -47,21 +56,6 @@ public class DiaryServiceImpo implements DiaryServices{
     private boolean isExisting(String userName){
         return diaryRepository.findDiary(userName)!= null;
     }
-    public void UpdateEntry(UpdateRequest request){
-
-    }
-    public Entry createEntry(Entry entry){
-        entries.save(entry);
-        return entry;
-    }
-    public void login(){
-
-    }
-    public void deleteEntry(DeleteEntryRequest request){
-
-    }
-
-    @Override
     public List<Entry> findEnteries(String userName){
         List<Entry> entriesFound = new ArrayList<>();
         for(int counter = 0; counter <entries.count() ; counter++)
@@ -69,7 +63,26 @@ public class DiaryServiceImpo implements DiaryServices{
                 entriesFound.add(entries.findEntryByAuthour(userName));
         return entriesFound;
     }
+    public void createEntry(Entry entry){
+        if(diaryRepository.findDiary(entry.getAuthor( )).isLocked())
+            throw new DiaryIsLockedException();
+        entries.save(entry);
+    }
 
+    public void UpdateEntry(UpdateRequest request){
+
+    }
+    public void deleteEntry(DeleteEntryRequest request){
+        Entry entry = new Entry();
+        entry.setAuthor(request.getUsername());
+        entry.setTitle(request.getTitle( ));
+        Diary diary = diaryRepository.findDiary(request.getUsername());
+        if(!diary.isLocked()){
+            if(diary.getUsername().equalsIgnoreCase(entry.getAuthor()) && diary.getPassword().equals(request.getPassword())){
+                 entries.deleteByEntry(entry);
+            }else throw new InvalidDetailsException();
+        }else throw new DiaryIsLockedException();
+    }
     private final DiaryRepository diaryRepository = new DiaryImp();
     private final EntryRepository entries = new EntryImplements();
 }
