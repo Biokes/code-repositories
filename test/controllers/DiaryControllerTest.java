@@ -4,8 +4,6 @@ import dtos.RegisterDiary;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-
 public class DiaryControllerTest{
     @Test
     void createDiaryInvalidDetails_testDiaryIsNotCreated(){
@@ -22,7 +20,7 @@ public class DiaryControllerTest{
         request.setUserName("userName");
         request.setPassword("password");
         Assertions.assertEquals("Diary created Successfully.",diaryServices.createDiary(request));
-
+        Assertions.assertEquals(1, diaryServices.count());
     }
     @Test
     void deleteDiary_testDiaryIsDeleted(){}

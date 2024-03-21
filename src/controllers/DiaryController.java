@@ -14,4 +14,8 @@ public class DiaryController{
         }
     }
     private DiaryServices services = new DiaryServiceImpo();
+
+    public int count(){
+        return (int)services.count();
+    }
 }
