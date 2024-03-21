@@ -1,8 +1,5 @@
 package diaryServicesTest;
 import data.models.Diary;
-import data.models.Entry;
-import dtos.DeleteEntryRequest;
-import dtos.EntryCreateRequest;
 import dtos.LogOutRequest;
 import dtos.RegisterDiary;
 import exceptions.DiaryNotFoundException;
